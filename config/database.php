@@ -47,7 +47,6 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
-            // Kita arahkan ke variabel asli MySQL Railway, atau pakai teks langsung jika kosong
             'host' => env('MYSQLHOST', 'mysql.railway.internal'),
             'port' => env('MYSQLPORT', '3306'),
             'database' => env('MYSQLDATABASE', 'railway'),

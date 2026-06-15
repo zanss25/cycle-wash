@@ -7,19 +7,23 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up(): void
-    {
-        Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
-            $table->integer('queue_number')->nullable();
-            $table->date('booking_date');
-            $table->time('booking_time')->nullable();
-            $table->enum('status', ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled', 'antrian'])->default('pending');
-            $table->text('notes')->nullable();
-            $table->decimal('total_price', 10, 2)->default(0);
-            $table->timestamps();
-        });
+{
+    Schema::create('bookings', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('service_id')->constrained()->cascadeOnDelete();
+        $table->integer('queue_number')->nullable();
+        $table->date('booking_date');
+        $table->time('booking_time')->nullable();
+        $table->string('vehicle_type')->nullable();
+        $table->string('plate_number')->nullable();
+        $table->enum('status', ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled', 'antrian'])->default('pending');
+        $table->text('notes')->nullable();
+        $table->decimal('total_price', 10, 2)->default(0);
+        $table->timestamps();
+    });
+}
+
     }
 
     public function down(): void
