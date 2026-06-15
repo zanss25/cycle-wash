@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::table('bookings', function (Blueprint $table) {
-        $table->integer('queue_number')->nullable()->after('id');
-    });
+    if (!Schema::hasColumn('bookings', 'queue_number')) {
+        Schema::table('bookings', function (Blueprint $table) {
+            $table->integer('queue_number')->nullable()->after('id');
+        });
+    }
 }
 
 public function down(): void
